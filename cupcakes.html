@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Опитування про десерти</title>
+  <meta name="description" content="Візьміть участь в опитуванні та поділіться своїми улюбленими десертами!">
+  <link rel="stylesheet" href="cupcakes.css">
+  <!-- Fallback for Older Browsers -->
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Standard Favicon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicion/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicion/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="./favicion/favicon-48x48.png">
+
+  <!-- Android/Google Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="./favicion/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./favicion/android-chrome-512x512.png">
+
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="60x60" href="./favicion/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./favicion/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./favicion/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./favicion/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicion/apple-touch-icon-180x180.png">
+
+  <!-- Windows Metro Tiles -->
+  <meta name="msapplication-TileImage" content="./favicion/mstile-150x150.png">
+  <meta name="msapplication-TileColor" content="#da532c">
+
+<link rel="manifest" href="./favicion/site.webmanifest">
+  <link rel="manifest" href="./favicion/site.webmanifest">
+
+  <link  href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <div>
+<h1 class="title">Опитування про десерти</h1>
+
+<form id="dessertForm" action="https://formspree.io/f/meozpobg" method="POST" target="_self">
+
+  <div class="custom-select question active" id="q1">
+    <label for="how-often">1. Як часто ви купуєте десерти?</label><br>
+    <button
+      id="dropdown-button"
+      class="select-button"
+      role="combobox"
+      aria-label="select button"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      aria-controls="select-dropdown"
+    >
+      <span class="selected-value">Оберіть</span>
+      <span class="arrow"></span>
+    </button>
+    <ul
+      class="select-dropdown hidden"
+      role="listbox"
+      id="select-dropdown"
+      aria-labelledby="dropdown-button"
+    >
+      <li role="option">Часто</li>
+      <li role="option">Іноді</li>
+      <li role="option">Рідко</li>
+    </ul>
+  </div>
+
+  <div class="question" id="q2">
+    <label for="important">2. Який десерт ви оберете? Нажміть на зображення.</label><br>
+
+<div class="dessert-grid">
+  <input type="hidden" name="dessert" id="selectedDessert">
+  <img src="./images/cupcakes.jpg" alt="Капкейки" class="dessert" data-name="Капкейки" />
+  <img src="./images/cheescake.jpg" alt="Чізкейк" class="dessert" data-name="Чізкейк" />
+  <img src="./images/macaroons.jpg" alt="Макаруни" class="dessert" data-name="Макаруни" />
+  <img src="./images/cup-dessert.jpg" alt="Десерти в стаканчику" class="dessert" data-name="Десерти в стаканчику" />
+  <img src="./images/cake.jpg" alt="Торт" class="dessert" data-name="Торт" />
+  <img src="./images/eclair.jpg" alt="Еклери" class="dessert" data-name="Еклери" />
+
+</div>
+  </div>
+
+
+  <div class="question" id="q3">
+    <label for="important">3. Що для вас важливо при виборі десерту?</label><br>
+    <input type="text" name="Що для вас важливо при виборі десерту?" id="important" required>
+  </div>
+
+  <div class="question" id="q4">
+    <label for="often-type">4. Який десерт ви купуєте найчастіше?</label><br>
+    <input type="text" name="Який десерт ви купуєте найчастіше?" id="often-type" required>
+  </div>
+
+  <div class="question" id="q5">
+    <label for="dislike">5. Що вам не подобається в десертах які купуєте зараз?</label><br>
+    <textarea name="Що вам не подобається в десертах які купуєте зараз?" id="dislike" required></textarea>
+  </div>
+
+  <div class="question" id="q6">
+    <label for="perfect">6. Що було б ідеальним десертом для вас?</label><br>
+    <textarea name="Що було б ідеальним десертом для вас?" id="perfect" required></textarea>
+    <div class="button-container">
+      <button class="submit-button" type="submit">Надіслати</button>
+    </div>
+  </div>
+
+</form>
+
+</div>
+
+<a href="https://www.instagram.com/yuliia_cupcakes/" target="_blank" class="instagram-icon" aria-label="Instagram">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="#A77BFF" viewBox="0 0 24 24" width="40" height="40">
+    <path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 2 .2 2.4.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1.2.4 2.4.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 2-.4 2.4-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.2.3-2.4.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-2-.2-2.4-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1.2-.4-2.4-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-2 .4-2.4.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.2-.3 2.4-.4 1.2-.1 1.6-.1 4.8-.1m0-2.2c-3.3 0-3.7 0-5 .1-1.3.1-2.3.3-3.1.6-.8.3-1.6.7-2.3 1.4-.7.7-1.1 1.5-1.4 2.3-.3.8-.5 1.8-.6 3.1C.1 9.3 0 9.7 0 13s0 3.7.1 5c.1 1.3.3 2.3.6 3.1.3.8.7 1.6 1.4 2.3.7.7 1.5 1.1 2.3 1.4.8.3 1.8.5 3.1.6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.3-.3 3.1-.6.8-.3 1.6-.7 2.3-1.4.7-.7 1.1-1.5 1.4-2.3.3-.8.5-1.8.6-3.1.1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.3-.6-3.1-.3-.8-.7-1.6-1.4-2.3-.7-.7-1.5-1.1-2.3-1.4-.8-.3-1.8-.5-3.1-.6-1.3-.1-1.7-.1-5-.1z"/>
+    <path d="M12 5.8A6.2 6.2 0 1 0 18.2 12 6.21 6.21 0 0 0 12 5.8zm0 10.2A4 4 0 1 1 16 12a4 4 0 0 1-4 4z"/>
+    <circle cx="18.4" cy="5.6" r="1.44"/>
+  </svg>
+</a>
+  <script src="form-steps.js"></script>
+</body>
+</html>
