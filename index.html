@@ -49,26 +49,27 @@
         </svg>
       </a>
       <h1 class="title">Опитування <span class="mobile-break"><br></span> про десерти</h1>
-            <div class="question active" id="q1">
-        <div class="custom-select">
+      <div class="question active" id="q1">
+        <div class="checkbox-group">
           <label for="how-often">1. Як часто ви купуєте десерти?</label><br>
-          <button id="dropdown-button" class="select-button" role="combobox" aria-label="select button"
-            aria-haspopup="listbox" aria-expanded="false" aria-controls="select-dropdown">
-            <span class="selected-value">Оберіть</span>
-            <span class="arrow"></span>
-          </button>
-          <ul class="select-dropdown hidden" role="listbox" id="select-dropdown" aria-labelledby="dropdown-button">
-            <li role="option">Часто</li>
-            <li role="option">Іноді</li>
-            <li role="option">Рідко</li>
-          </ul>
+          <label class="checkbox-item">
+            <input type="checkbox" name="Як часто ви купуєте десерти?" value="Часто">
+            <span>Часто</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="Як часто ви купуєте десерти?" value="Іноді">
+            <span>Іноді</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="Як часто ви купуєте десерти?" value="Рідко">
+            <span>Рідко</span>
+          </label>
+          <div class="button-container">
+            <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
+          </div>
         </div>
-        <div class="button-container">
-          <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
-        </div>
+
       </div>
-
-
       <div class="question" id="q2">
         <label for="important">2. Який десерт ви оберете? Нажміть на зображення.</label><br>
 
@@ -86,35 +87,210 @@
           <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
         </div>
       </div>
-
-
       <div class="question" id="q3">
-        <label for="important">3. Що для вас важливо при виборі десерту?</label><br>
-        <input type="text" name="Що для вас важливо при виборі десерту?" id="important" required>
-        <div class="button-container">
-          <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
+        <div class="multiple-group">
+          <label for="important">3. Що для вас важливо при виборі десерту?</label><br>
+          <label class="checkbox-item">
+            <input type="checkbox" id="important" name="Що для вас важливо при виборі десерту?" value="Ціна">
+            <span>Ціна</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="important" name="Що для вас важливо при виборі десерту?" value="Якість">
+            <span>Якість</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="important" name="Що для вас важливо при виборі десерту?" value="Зовнішній вигляд">
+            <span>Зовнішній вигляд </span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="important" name="Що для вас важливо при виборі десерту?" value="Смак">
+            <span>Смак</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="important" name="Що для вас важливо при виборі десерту?" value="Натуральність">
+            <span>Натуральність</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="important" name="Що для вас важливо при виборі десерту?" value="Калорійність">
+            <span>Калорійність</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="otherCheck" name="Що для вас важливо при виборі десерту?" value="Інше">
+            <span>Інший варіант</span>
+          </label>
+
+          <input type="text" id="otherInput" name="Вкажіть свій варіант (Що для вас важливо при виборі десерту?)" placeholder="Вкажіть свій варіант"
+            style="display:none; margin-top:5px;">
+          <div class="button-container">
+            <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
+          </div>
         </div>
       </div>
 
       <div class="question" id="q4">
-        <label for="often-type">4. Який десерт ви купуєте найчастіше?</label><br>
-        <input type="text" name="Який десерт ви купуєте найчастіше?" id="often-type" required>
-        <div class="button-container">
-          <button type="button" class="next-btn">Оберіть відповідь</button>
+        <div class="multiple-group">
+          <label for="often-type">4. Який десерт ви купуєте найчастіше?</label><br>
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Макаруни">
+            <span>Макаруни</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Капкейки">
+            <span>Капкейки</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Тарти">
+            <span>Тарти</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Чізкейки">
+            <span>Чізкейки</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Торт">
+            <span>Торт</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Печення">
+            <span>Печення</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Десерти в стаканчиках">
+            <span>Десерти в стаканчиках</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="often-type" name="Який десерт ви купуєте найчастіше?" value="Еклери">
+            <span>Еклери</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="otherCheck" name="Який десерт ви купуєте найчастіше?" value="Інший варіант">
+            <span>Інший варіант</span>
+          </label>
+
+          <input type="text" id="otherInput" name="Вкажіть свій варіант (Який десерт ви купуєте найчастіше?)" placeholder="Вкажіть свій варіант"
+            style="display:none; margin-top:5px;">
+          <div class="button-container">
+            <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
+          </div>
         </div>
       </div>
 
       <div class="question" id="q5">
-        <label for="dislike">5. Що вам не подобається в десертах які купуєте зараз?</label><br>
-        <textarea name="Що вам не подобається в десертах які купуєте зараз?" id="dislike" required></textarea>
-        <div class="button-container">
-          <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
+        <div class="multiple-group">
+          <label for="dislike">5. Що вам не подобається в десертах які купуєте зараз?</label><br>
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Хімічний склад">
+            <span>Хімічний склад</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Велика калорійність">
+            <span>Велика калорійність</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Смакові якості">
+            <span>Смакові якості</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Надто висока ціна">
+            <span>Надто висока ціна</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Малий вибір у магазинах">
+            <span>Малий вибір у магазинах</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Недостатньо свіжі інгредієнти">
+            <span>Недостатньо свіжі інгредієнти</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Незручна упаковка">
+            <span>Незручна упаковка</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="dislike" name="Що вам не подобається в десертах які купуєте зараз?" value="Мало натуральних інгредієнтів">
+            <span>Мало натуральних інгредієнтів</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="otherCheck" name="Що вам не подобається в десертах які купуєте зараз?" value="Інше">
+            <span>Інший варіант</span>
+          </label>
+
+          <input type="text" id="otherInput" name="Вкажіть свій варіант (Що вам не подобається в десертах які купуєте зараз?)" placeholder="Вкажіть свій варіант"
+            style="display:none; margin-top:5px;">
+          <div class="button-container">
+            <button type="button" class="next-btn" disabled>Оберіть відповідь</button>
+          </div>
         </div>
       </div>
 
       <div class="question" id="q6">
-        <label for="perfect">6. Що було б ідеальним десертом для вас?</label><br>
-        <textarea name="Що було б ідеальним десертом для вас?" id="perfect" required></textarea>
+        <div class="multiple-group">
+          <label for="ideal-option">6. Що було б ідеальним десертом для вас?</label><br>
+          <label class="checkbox-item">
+            <input type="checkbox" id="ideal-option" name="Що було б ідеальним десертом для вас?" value="Смачний і не дуже солодкий">
+            <span>Смачний і не дуже солодкий</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="ideal-option" name="Що було б ідеальним десертом для вас?" value="З натуральних інгредієнтів">
+            <span>З натуральних інгредієнтів</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="ideal-option" name="Що було б ідеальним десертом для вас?" value="Малокалорійний / дієтичний">
+            <span>Малокалорійний / дієтичний</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="ideal-option" name="Що було б ідеальним десертом для вас?" value="Красиво оформлений / привабливий">
+            <span>Красиво оформлений / привабливий</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="ideal-option" name="Що було б ідеальним десертом для вас?" value="Швидкий у споживанні (зручний формат, наприклад, десерт у стаканчику)">
+            <span>Швидкий у споживанні (зручний формат, наприклад, десерт у стаканчику)</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="ideal-option" name="Що було б ідеальним десертом для вас?" value="Класичні десерти (торти, печиво, капкейки)">
+            <span>Класичні десерти (торти, печиво, капкейки)</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="ideal-option" name="Що було б ідеальним десертом для вас?" value="Екзотичні / нестандартні">
+            <span>Екзотичні / нестандартні</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="otherCheck" name="Що було б ідеальним десертом для вас?" value="Інше">
+            <span>Інший варіант</span>
+          </label>
+
+          <input type="text" id="otherInput" name="Вкажіть свій варіант (Що було б ідеальним десертом для вас?)" placeholder="Вкажіть свій варіант"
+            style="display:none; margin-top:5px;">
+        </div>
         <div class="button-container">
           <button class="submit-button" type="submit">Надіслати</button>
         </div>

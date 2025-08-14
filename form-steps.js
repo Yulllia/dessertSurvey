@@ -1,111 +1,16 @@
-const questions = document.querySelectorAll('.question');
-let current = 0;
-
-function goToNextQuestion() {
-  if (current < questions.length - 1) {
-    questions[current].classList.remove('active');
-    current++;
-    questions[current].classList.add('active');
-  }
-}
-
-document.querySelectorAll('input, select').forEach(el => {
-  el.addEventListener('change', () => {
-    goToNextQuestion();
-  });
-});
-
-// Trigger when clicking a custom-select option
-document.querySelectorAll('.custom-select [role="option"]').forEach(option => {
-  option.addEventListener('click', () => {
-    // set selected value text
-    const button = option.closest('.custom-select').querySelector('.selected-value');
-    button.textContent = option.textContent.trim();
-    // close dropdown (optional)
-    option.closest('.custom-select').querySelector('.select-dropdown').classList.add('hidden');
-
-    const questionEl = img.closest('.question');
-    const btn = questionEl.querySelector('.next-btn');
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = 'Далі'; 
-    }
-
-  });
-});
-
 document.addEventListener('DOMContentLoaded', () => {
-  function enableNextButton(questionEl) {
-    const btn = questionEl.querySelector('.next-btn');
-    if (!btn) return;
 
-    btn.disabled = false;
-    btn.textContent = 'Далі';
+  const questions = document.querySelectorAll('.question');
+  let current = 0;
+
+  function goToNextQuestion() {
+    if (current < questions.length - 1) {
+      questions[current].classList.remove('active');
+      current++;
+      questions[current].classList.add('active');
+    }
   }
 
-  function disableNextButton(questionEl) {
-    const btn = questionEl.querySelector('.next-btn');
-    if (!btn) return;
-
-    btn.disabled = true;
-    btn.textContent = 'Оберіть відповідь';
-  }
-
-  function resetNextButtons() {
-    document.querySelectorAll('.next-btn').forEach(btn => {
-      btn.disabled = true;
-      btn.textContent = 'Оберіть відповідь';
-    });
-  }
-
-  resetNextButtons();
-
-  // Для input[type=text]
-  document.querySelectorAll('input[type="text"]').forEach(input => {
-    input.addEventListener('input', () => {
-      const questionEl = input.closest('.question');
-      if (input.value.trim() !== '') {
-        enableNextButton(questionEl);
-      } else {
-        disableNextButton(questionEl);
-      }
-    });
-  });
-
-  // Для textarea
-  document.querySelectorAll('textarea').forEach(textarea => {
-    textarea.addEventListener('input', () => {
-      const questionEl = textarea.closest('.question');
-      if (textarea.value.trim() !== '') {
-        enableNextButton(questionEl);
-      } else {
-        disableNextButton(questionEl);
-      }
-    });
-  });
-
-  // Для стандартних select
-  document.querySelectorAll('select').forEach(select => {
-    select.addEventListener('change', () => {
-      const questionEl = select.closest('.question');
-      if (select.value && select.value !== '') {
-        enableNextButton(questionEl);
-      } else {
-        disableNextButton(questionEl);
-      }
-    });
-  });
-
-  // Для кастомного селекту (обробник кліку по опції)
-  document.querySelectorAll('.custom-select [role="option"]').forEach(option => {
-    option.addEventListener('click', () => {
-      const questionEl = option.closest('.question');
-      // Тут можна додатково перевірити, що вибрано, але якщо клік — вважай вибір зроблено
-      enableNextButton(questionEl);
-    });
-  });
-
-  // Для десертів
   document.querySelectorAll('.dessert').forEach(img => {
     img.addEventListener('click', () => {
       const questionEl = img.closest('.question');
@@ -122,20 +27,91 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Додатково, якщо хочеш перейти на наступне питання по ентеру у textarea
-  document.querySelectorAll('textarea').forEach(el => {
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        const questionEl = el.closest('.question');
-        if (!questionEl.querySelector('.next-btn').disabled) {
-          goToNextQuestion();
+
+  function enableNextButton(questionEl) {
+    const btn = questionEl.querySelector('.next-btn');
+    if (!btn) return;
+
+    btn.disabled = false;
+    btn.textContent = 'Далі';
+  }
+
+  function resetNextButtons() {
+    document.querySelectorAll('.next-btn').forEach(btn => {
+      btn.disabled = true;
+      btn.textContent = 'Оберіть відповідь';
+    });
+  }
+
+  resetNextButtons();
+
+
+  const updateNextButton = (questionEl, checkboxes, otherCheck = null, otherInput = null) => {
+    const anyChecked = Array.from(checkboxes).some(c => c.checked);
+    let isValid = false;
+
+    if (otherCheck && otherCheck.checked) {
+      isValid = otherInput && otherInput.value.trim() !== '';
+    } else {
+      isValid = anyChecked;
+    }
+    const nextBtn = questionEl.querySelector('.next-btn');
+    if (!nextBtn) return;
+    nextBtn.disabled = !isValid;
+    nextBtn.textContent = isValid ? 'Далі' : 'Оберіть відповідь';
+  };
+
+  // MULTIPLE GROUP (multiple selection allowed)
+  document.querySelectorAll('.multiple-group').forEach(group => {
+    const questionEl = group.closest('.question');
+    const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+    const otherCheck = group.querySelector('#otherCheck');
+    const otherInput = group.querySelector('#otherInput');
+
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        cb.closest('.checkbox-item').classList.toggle('selected', cb.checked);
+
+        if (otherCheck && otherInput) {
+          otherInput.style.display = otherCheck.checked ? 'block' : 'none';
+          if (!otherCheck.checked) otherInput.value = '';
         }
-      }
+
+        updateNextButton(questionEl, checkboxes, otherCheck, otherInput);
+      });
+    });
+
+    if (otherInput) {
+      otherInput.addEventListener('input', () => {
+        updateNextButton(questionEl, checkboxes, otherCheck, otherInput);
+      });
+    }
+  });
+
+  // CHECKBOX GROUP (only one selection allowed)
+  document.querySelectorAll('.checkbox-group').forEach(group => {
+    const questionEl = group.closest('.question');
+    const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        // Remove selection from all other checkboxes
+        checkboxes.forEach(other => {
+          if (other !== cb) {
+            other.checked = false;
+            other.closest('.checkbox-item').classList.remove('selected');
+          }
+        });
+
+        // Add selected class to clicked checkbox
+        cb.closest('.checkbox-item').classList.toggle('selected', cb.checked);
+
+        updateNextButton(questionEl, checkboxes);
+      });
     });
   });
 });
-
 
 
 document.querySelectorAll('.dessert').forEach(img => {
@@ -151,7 +127,7 @@ document.querySelectorAll('.dessert').forEach(img => {
     const btn = questionEl.querySelector('.next-btn');
     if (btn) {
       btn.disabled = false;
-      btn.textContent = 'Далі'; 
+      btn.textContent = 'Далі';
     }
   });
 });
@@ -167,101 +143,28 @@ document.getElementById('dessertForm').addEventListener('submit', function (e) {
   }, 100);
 });
 
-
+// Send device info to Google Sheets
 document.addEventListener("DOMContentLoaded", () => {
-  const customSelects = document.querySelectorAll(".custom-select");
+  if (localStorage.getItem("isSubmited")) {
+    return;
+  };
 
-  customSelects.forEach((customSelect) => {
-    const selectButton = customSelect.querySelector(".select-button");
-    const dropdown = customSelect.querySelector(".select-dropdown");
-    const options = dropdown.querySelectorAll("li");
-    const selectedValue = selectButton.querySelector(".selected-value");
+  const deviceInfo = navigator.userAgent; // Get user device info
 
-    let focusedIndex = -1;
-
-    const toggleDropdown = (expand = null) => {
-      const isOpen =
-        expand !== null ? expand : dropdown.classList.contains("hidden");
-      dropdown.classList.toggle("hidden", !isOpen);
-      selectButton.setAttribute("aria-expanded", isOpen);
-
-      if (isOpen) {
-        focusedIndex = [...options].findIndex((option) =>
-          option.classList.contains("selected")
-        );
-        focusedIndex = focusedIndex === -1 ? 0 : focusedIndex;
-        updateFocus();
-      } else {
-        focusedIndex = -1;
-        selectButton.focus();
-      }
-    };
-
-    const updateFocus = () => {
-      options.forEach((option, index) => {
-        if (option) {
-          option.setAttribute("tabindex", index === focusedIndex ? "0" : "-1");
-          if (index === focusedIndex) option.focus();
-        }
-      });
-    };
-
-    const handleOptionSelect = (option) => {
-      options.forEach((opt) => opt.classList.remove("selected"));
-      option.classList.add("selected");
-      selectedValue.textContent = option.textContent.trim();
-      if (option.dataset.value === "clear") {
-        // Reset to the default value
-        selectedValue.textContent = "Оберіть";
-        options.forEach((opt) => opt.classList.remove("selected"));
-        return;
-      }
-    };
-
-    options.forEach((option) => {
-      option.addEventListener("click", () => {
-        handleOptionSelect(option);
-        toggleDropdown(false);
-      });
+  // Replace YOUR_GOOGLE_APPS_SCRIPT_URL with the URL from Step 2
+  fetch("https://script.google.com/macros/s/AKfycbwce6x-LxpWC4tdS7iOaW7f78PXCTgTOfjteurojDm-96DinqSR5H353bW4_RfMYRi9/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `deviceInfo=${encodeURIComponent(deviceInfo)}`,
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      localStorage.setItem("isSubmited", "true")
+      console.log("Device info sent successfully:", data);
+    })
+    .catch((error) => {
+      console.error("Error sending device info:", error);
     });
-
-    selectButton.addEventListener("click", () => {
-      toggleDropdown();
-    });
-
-    selectButton.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        toggleDropdown(true);
-      } else if (event.key === "Escape") {
-        toggleDropdown(false);
-      }
-    });
-
-    dropdown.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        focusedIndex = (focusedIndex + 1) % options.length;
-        updateFocus();
-      } else if (event.key === "ArrowUp") {
-        event.preventDefault();
-        focusedIndex = (focusedIndex - 1 + options.length) % options.length;
-        updateFocus();
-      } else if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        handleOptionSelect(options[focusedIndex]);
-        toggleDropdown(false);
-      } else if (event.key === "Escape") {
-        toggleDropdown(false);
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      const isOutsideClick = !customSelect.contains(event.target);
-
-      if (isOutsideClick) {
-        toggleDropdown(false);
-      }
-    });
-  });
 });
